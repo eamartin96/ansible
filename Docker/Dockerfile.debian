@@ -1,0 +1,26 @@
+FROM debian:latest
+
+# Install SSH server and Python (required for Ansible)
+RUN apt-get update && apt-get install -y openssh-server python3 sudo
+RUN mkdir /var/run/sshd
+
+# Create SSH directory for root user
+RUN mkdir -p /home/root/.ssh
+
+# Copy your public key to the authorized_keys file
+COPY keys/ansible.pub /root/.ssh/authorized_keys
+
+# Set permissions for SSH files
+RUN chmod 600 /root/.ssh/authorized_keys && chmod 700 /root/.ssh
+
+# Set root password and allow root SSH login
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin without-password/' /etc/ssh/sshd_config
+
+# Expose SSH port
+EXPOSE 22
+
+# Update Debian
+RUN apt-get install -y software-properties-common
+
+# Start SSH service\
+CMD ["/usr/sbin/sshd", "-D"]
