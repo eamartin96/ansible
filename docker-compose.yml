@@ -1,0 +1,85 @@
+networks:
+  ansible:
+    name: ansible
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+
+services:
+  debian1:
+    image: custom-debian
+    container_name: debian1
+    hostname: debian1
+    networks:
+      ansible:
+        ipv4_address: 172.18.0.2
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+
+  debian2:
+    image: custom-debian
+    container_name: debian2
+    hostname: debian2
+    networks:
+      ansible:
+        ipv4_address: 172.18.0.3
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+
+  ubuntu1:
+    image: custom-ubuntu
+    container_name: ubuntu1
+    hostname: ubuntu1
+    networks:
+      ansible:
+        ipv4_address: 172.18.0.8
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+
+  mysql1:
+    image: custom-ubuntu
+    container_name: mysql1
+    hostname: mysql1
+    networks:
+      ansible:
+        ipv4_address: 172.18.0.10
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+
+  mysql2:
+    image: custom-ubuntu
+    container_name: mysql2
+    hostname: mysql2
+    networks:
+      ansible:
+        ipv4_address: 172.18.0.11
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+
+  tomcat1:
+    image: custom-debian
+    container_name: tomcat1
+    hostname: tomcat1
+    networks:
+      ansible:
+        ipv4_address: 172.18.0.12
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+
+  tomcat2:
+    image: custom-debian
+    container_name: tomcat2
+    hostname: tomcat2
+    networks:
+      ansible:
+        ipv4_address: 172.18.0.13
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
