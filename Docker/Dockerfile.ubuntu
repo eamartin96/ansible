@@ -4,17 +4,23 @@ FROM ubuntu:latest
 RUN apt-get update && apt-get install -y openssh-server python3 sudo
 RUN mkdir /var/run/sshd
 
-# Create SSH directory for root user
-RUN mkdir -p /home/root/.ssh
+# Create the "ansible" user
+RUN useradd -m -s /bin/bash -G sudo ansible \
+    && echo "ansible ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Create SSH directory for ansible user
+RUN mkdir -p /home/ansible/.ssh
 
 # Copy your public key to the authorized_keys file
-COPY keys/ansible.pub /root/.ssh/authorized_keys
+COPY keys/ansible.pub /home/ansible/.ssh/authorized_keys
 
 # Set permissions for SSH files
-RUN chmod 600 /root/.ssh/authorized_keys && chmod 700 /root/.ssh
+RUN chmod 600 /home/ansible/.ssh/authorized_keys \
+&& chown -R ansible:ansible /home/ansible/.ssh
 
-# Set root password and allow root SSH login
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin without-password/' /etc/ssh/sshd_config
+# Configure SSH to allow passwordless login for "ansible" users
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config \
+    && echo "AllowUsers ansible" >> /etc/ssh/sshd_config
 
 # Expose SSH port
 EXPOSE 22
