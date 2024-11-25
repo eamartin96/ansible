@@ -2,49 +2,49 @@
 Host debian1
     HostName 172.18.0.2
     User ansible
-    IdentityFile ~/Development/ansible/keys/ansible
+    IdentityFile ~/Development/ansible/keys/ssh_ansible
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
 
 Host debian2
     HostName 172.18.0.3
     User ansible
-    IdentityFile ~/Development/ansible/keys/ansible
+    IdentityFile ~/Development/ansible/keys/ssh_ansible
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
 
 Host ubuntu1
     HostName 172.18.0.8
     User ansible
-    IdentityFile ~/Development/ansible/keys/ansible
+    IdentityFile ~/Development/ansible/keys/ssh_ansible
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
 
 Host mysql1
     HostName 172.18.0.10
     User ansible
-    IdentityFile ~/Development/ansible/keys/ansible
+    IdentityFile ~/Development/ansible/keys/ssh_ansible
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
 
 Host mysql2
     HostName 172.18.0.11
     User ansible
-    IdentityFile ~/Development/ansible/keys/ansible
+    IdentityFile ~/Development/ansible/keys/ssh_ansible
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
 
 Host tomcat1
     HostName 172.18.0.12
     User ansible
-    IdentityFile ~/Development/ansible/keys/ansible
+    IdentityFile ~/Development/ansible/keys/ssh_ansible
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
 
 Host tomcat2
     HostName 172.18.0.13
     User ansible
-    IdentityFile ~/Development/ansible/keys/ansible
+    IdentityFile ~/Development/ansible/keys/ssh_ansible
     StrictHostKeyChecking no
     UserKnownHostsFile /dev/null
 

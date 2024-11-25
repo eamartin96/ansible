@@ -12,7 +12,7 @@ RUN useradd -m -s /bin/bash -G sudo ansible \
 RUN mkdir -p /home/ansible/.ssh
 
 # Copy your public key to the authorized_keys file
-COPY keys/ansible.pub /home/ansible/.ssh/authorized_keys
+COPY keys/ssh_ansible.pub /home/ansible/.ssh/authorized_keys
 
 # Set permissions for SSH files
 RUN chmod 600 /home/ansible/.ssh/authorized_keys \
