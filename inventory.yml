@@ -1,14 +1,11 @@
 [debian]
 debian1
 debian2
+debian3
+debian4
 
 [ubuntu]
 ubuntu1
-
-[servidores_de_datos]
-mysql1
-mysql2
-
-[servidores_de_aplicaciones]
-tomcat1
-tomcat2
+ubuntu2
+ubuntu3
+ubuntu4
