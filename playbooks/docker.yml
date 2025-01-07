@@ -1,0 +1,27 @@
+---
+- name: Install Docker
+  hosts: ubuntu
+  become: yes
+  tasks:
+    - name: Install dependencies
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: presento
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+
+    - name: Install Docker CE
+      apt:
+        name: docker-ce
+        state: present
